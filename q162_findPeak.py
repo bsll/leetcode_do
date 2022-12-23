@@ -49,7 +49,7 @@ class Solution(object):
         len1 = len(nums)
         if len1 == 1:
             return 0
-        elif len1 == 2:
+        if len1 == 2:
             if nums[0] > nums[1]:
                 return 0
             else:
