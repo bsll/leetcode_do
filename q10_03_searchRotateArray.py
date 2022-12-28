@@ -3,6 +3,32 @@
 # Time    : 2022/12/27 11:52 PM
 # Author  : xiaohui.wang
 # File    : q1003_searchRotateArray.py
+'''
+稀疏数组搜索。有个排好序的字符串数组，其中散布着一些空字符串，编写一种方法，找出给定字符串的位置。
+
+示例1:
+
+ 输入: words = ["at", "", "", "", "ball", "", "", "car", "", "","dad", "", ""], s = "ta"
+ 输出：-1
+ 说明: 不存在返回-1。
+示例2:
+
+ 输入：words = ["at", "", "", "", "ball", "", "", "car", "", "","dad", "", ""], s = "ball"
+ 输出：4
+提示:
+
+words的长度在[1, 1000000]之间
+
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/sparse-array-search-lcci
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+'''
+'''
+解题思路：二分查找，不过需要几个点：1、每次判断最左边是否是目标值
+                               2、如果中间值等于目标值，不能直接返回，而是中间值作为右边界使用
+                               3、如果中间值等于左边，或者等于右边，无法判断是否有序，则左边右移，右边左移
+'''
 #class Solution(object):
 #    def search(self, arr, target):
 #        """
@@ -66,7 +92,6 @@ class Solution(object):
         #    return -1
         end = len(arr) - 1
         start = 0
-        mid = -1
         while start <= end:
             #note1: 如果左边符合，直接返回，因为要找最小的索引
             if arr[start] == target:
