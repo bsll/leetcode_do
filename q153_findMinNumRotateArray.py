@@ -45,8 +45,27 @@ nums 原来是一个升序排序的数组，并进行了 1 至 n 次旋转
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 '''
 '''
-解题思路：最小值一定不在有序的那边，所以可以一直排除
+解题思路：1、最小值一定不在有序的那边，所以可以一直排除
+2、最小值的左边和右边都比最小者大
 '''
+#class Solution(object):
+#    def findMin(self, nums):
+#        """
+#        :type nums: List[int]
+#        :rtype: int
+#        """
+#        start,end = 0, len(nums)-1
+#        while start <= end:
+#            mid = (end - start) // 2 + start
+#            #如果天然有序，直接返回最左边
+#            if nums[start] < nums[mid] < nums[end]:
+#                return nums[start]
+#            #如果右边有序
+#            if nums[mid] < nums[end]:
+#                end = mid
+#            #如果左边有序
+#            elif nums[mid] > nums[end]:
+#                start = mid
 class Solution(object):
     def findMin(self, nums):
         """
@@ -54,19 +73,16 @@ class Solution(object):
         :rtype: int
         """
         start,end = 0, len(nums)-1
-        while start <= end:
+        while start < end:
             mid = (end - start) // 2 + start
-            if end-start <= 1:
-                return min(nums[start],nums[end])
-            #如果天然有序，直接返回最左边
-            if nums[start] < nums[mid] < nums[end]:
-                return nums[start]
-            #如果右边有序
+            #如果右边有序，说明在左侧
             if nums[mid] < nums[end]:
                 end = mid
-            #如果左边有序
-            elif nums[mid] > nums[end]:
-                start = mid
+            #如果左边有序，肯定在右侧
+            else:
+                start = mid + 1
+        return nums[start]
+
 
 if __name__ == "__main__":
     soultion = Solution()
@@ -81,6 +97,8 @@ if __name__ == "__main__":
     print(res)
     nums = [13,11]
     res = soultion.findMin(nums)
+    print(res)
     nums = [13]
     res = soultion.findMin(nums)
     print(res)
+
