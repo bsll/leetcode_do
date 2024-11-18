@@ -16,15 +16,10 @@
 '''
 
 '''
-解题思路：逐次累加，用头插法
+解题思路：逐次累加，用头插法,注意进位和链表结束就行,结束用 0 替代
 '''
 
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-from hot100.utils import create_linked_list, print_linked_list, ListNode
+from utils import create_linked_list, print_linked_list, ListNode
 
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
