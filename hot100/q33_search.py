@@ -28,7 +28,7 @@
 输出：-1
 '''
 '''
-思路：二分查找，
+思路：二分查找，每次做两次判断，判断哪边有序，判断目标值是否在有序的范围内
 '''
 class Solution(object):
     def search(self, nums, target):
