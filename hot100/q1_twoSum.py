@@ -10,6 +10,19 @@
 
 你可以按任意顺序返回答案。
 
+示例 1：
+
+输入：nums = [2,7,11,15], target = 9
+输出：[0,1]
+解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+示例 2：
+
+输入：nums = [3,2,4], target = 6
+输出：[1,2]
+示例 3：
+
+输入：nums = [3,3], target = 6
+输出：[0,1]
 
 
 来源：力扣（LeetCode）
@@ -18,10 +31,8 @@
 '''
 
 '''
-利用空间换时间的思路，用一个字典存当前值对应的target,value存下标，这样时间就是O(N)
+思路：利用空间换时间的思路，用一个字典存当前值对应的target,value存下标，这样时间就是O(N)
 '''
-
-
 
 class Solution(object):
     def twoSum(self, nums, target):
