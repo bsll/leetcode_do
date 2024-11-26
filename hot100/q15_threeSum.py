@@ -34,11 +34,29 @@ nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
 解释：唯一可能的三元组和为 0 。
 '''
 '''
-思路：1、暴力循环
-     2、双指针
+思路：两层循环，第一层循环控制第一个位置，防止重复
+     第二层循环使用双指针，依次找和为 0 的数，但是用过的数也要防止重复
 '''
 from typing import List
 class Solution:
+    def threeSum1(self, nums: List[int]) -> List[List[int]]:
+        m = len(nums)
+        nums.sort()
+        res = []
+        for start in range(m):
+            if start > 0 and nums[start] == nums[start-1]:
+                continue
+            end = m -1
+            for middle in range(start+1, m):
+                if middle > start + 1 and nums[middle] == nums[middle - 1]:
+                    continue
+                while middle < end and nums[start] + nums[middle] + nums[end] > 0:
+                    end = end - 1
+                if middle == end:
+                    break
+                if nums[start] + nums[middle] + nums[end] == 0:
+                    res.append([nums[start], nums[middle], nums[end]])
+        return res
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         m = len(nums)
         if m <= 2:
@@ -55,13 +73,14 @@ class Solution:
             if start == 0 or nums[start] !=nums[start -1]:
                 middle = start + 1
                 end = m - 1
+                target = nums[start]
                 while middle < end:
-                    if nums[start] + nums[middle] + nums[end] > 0:
+                    if target + nums[middle] + nums[end] > 0:
                         end = end - 1
-                    elif nums[start] + nums[middle] + nums[end] < 0:
+                    elif target + nums[middle] + nums[end] < 0:
                         middle = middle + 1
                     else:
-                        res.append([nums[start], nums[middle], nums[end]])
+                        res.append([target, nums[middle], nums[end]])
                         middle = middle + 1
                         end = end - 1 
                         while end < m-1 and end > 0 and nums[end] == nums[end + 1]:
@@ -80,11 +99,11 @@ if __name__ == "__main__":
     #nums = [0,0,0,0,0]
     #print(s.threeSum(nums))    
     nums = [-2,0,1,1,2]
-    print(s.threeSum(nums))    
+    print(s.threeSum1(nums))    
     nums = [-1,0,1,2,-1,-4,-2,-3,3,0,4]
-    print(s.threeSum(nums))    
+    print(s.threeSum1(nums))    
     nums = [-2,0,0,2,2]
-    print(s.threeSum(nums))    
+    print(s.threeSum1(nums))    
 
 
 
