@@ -22,10 +22,26 @@
 输出: [0,0,9,0,0]
 '''
 '''
-思路：
+思路：双指针，一个从左往右算前缀，一个从右往左算后缀，无论是前缀还是后缀第一个位置不算，就会刚好差一位
 '''
 from typing import List
 class Solution:
+    def productExceptSelf1(self, nums: List[int]) -> List[int]:
+        m = len(nums)
+        left_res = [1] * m
+        right_res = [1] * m
+        res = [1] * m
+        #构建前缀乘积
+        for i in range(1,m):
+            left_res[i] = nums[i-1] * left_res[i-1]
+        #构建后缀乘积
+        for i in range(m-2,-1,-1):
+            right_res[i] = nums[i+1] * right_res[i+1]
+        #讲前缀和后缀相乘就得到结果
+        for i in range(m):
+            res[i] = left_res[i] * right_res[i]
+        return res
+
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         m = len(nums)
         res = [1] * m
@@ -33,6 +49,7 @@ class Solution:
         right = m - 1
         lp = 1
         rp = 1
+        #这个是直接用lp,rp，记录当前前缀和后缀的结果
         while right >= 0 and left < m:
             res[left] *= lp
             res[right] *= rp
@@ -44,4 +61,4 @@ class Solution:
 if __name__ == "__main__":
     s = Solution()
     nums =[1,2,3,4]
-    print(s.productExceptSelf(nums))
+    print(s.productExceptSelf1(nums))
