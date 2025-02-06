@@ -40,6 +40,8 @@ class ListNode():
         self.next = None
 #将传入的数组转化为链表
 def create_linked_list(arr):
+    if len(arr) == 0:
+        return None
     head = ListNode(arr[0])
     cur = head
     for i in range(1, len(arr)):
