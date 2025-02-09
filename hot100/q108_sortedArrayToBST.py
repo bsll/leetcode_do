@@ -32,7 +32,7 @@
 nums 按 严格递增 顺序排列
 '''
 '''
-思路：中序遍历，总是选择中间位置左边的数字作为根节点
+思路：从中间位置开始遍历，总是选择中间位置左边的数字作为根节点
 '''
 from utils import TreeNode
 class Solution(object):
