@@ -39,7 +39,7 @@ word 和 prefix 仅由小写英文字母组成
 insert、search 和 startsWith 调用次数 总计 不超过 3 * 104 次
 '''
 '''
-思路：
+思路：创建一个 searchPrefix ， node = node.children[ch]
 '''
 class Trie:
     def __init__(self):
