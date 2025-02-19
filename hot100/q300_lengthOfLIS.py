@@ -30,7 +30,7 @@
 -104 <= nums[i] <= 104
 '''
 '''
-思路：最少都是 1
+思路：最少都是 1,  if nums[j] < nums[i]: dp[i] = max(dp[i], dp[j] + 1)  return max(dp)
 '''
 class Solution(object):
     def lengthOfLIS(self, nums):
