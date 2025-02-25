@@ -30,8 +30,9 @@
 '''
 '''
 解题思路：头插法
+每次处理一个节点，将当前节点的next指向前一个节点（即新链表的头），然后更新头节点为当前节点，最后移动当前节点到原链表的下一个节点
 '''
-from utils import ListNode,create_linked_list
+from utils import ListNode,create_linked_list,print_linked_list
 class Solution(object):
     def reverseList(self, head):
         """
@@ -61,8 +62,22 @@ class Solution(object):
             res = head
             head = tmp
         return res
+    def reverseList3(self, root):
+        if not root:
+            return root
+        head = None
+        while root:
+            #临时保存下一个节点，防止后续修改 root.next 后丢失原来链表后续节点
+            tmp = root.next
+            #反转指针方向，当前节点的next指向新链表的头部（即前一个节点）
+            root.next = head
+            #更新新链表头部
+            head = root
+            #移动到原链表下一个节点
+            root = tmp
+        return head
     
 if __name__ == '__main__':
     s = Solution()
     head = create_linked_list([1,2,3,4,5])
-    print(s.reverseList(head))
+    print(print_linked_list(s.reverseList3(head)))
