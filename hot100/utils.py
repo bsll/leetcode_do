@@ -35,7 +35,7 @@ def generate_tree(vals):
 
 
 class ListNode():
-    def __init__(self, x):
+    def __init__(self, x, next=None):
         self.val = x
         self.next = None
 #将传入的数组转化为链表
