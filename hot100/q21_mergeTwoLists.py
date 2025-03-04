@@ -32,29 +32,7 @@ l1 和 l2 均按 非递减顺序 排列
 '''
 解题思路：同时遍历两个链表，比较大小，将小的节点放到新链表中
 '''
-class Solution(object):
-    def mergeTwoLists(self, l1, l2):
-        """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
-        """
-        if l1 == None:
-            return l2
-        if l2 == None:
-            return l1
-        head = ListNode()
-        l = head
-        while l1 != None and l2 != None:
-            if l1.val < l2.val:
-                l.next = l1
-                l1 = l1.next
-            else:
-                l.next = l2
-                l2 = l2.next
-            l = l.next
-        l.next = l1 if l1 else l2
-        return head.next
+from utils import ListNode,create_linked_list,print_linked_list
 class Solution(object):
     def mergeTwoLists(self, l1, l2):
         """
@@ -70,17 +48,16 @@ class Solution(object):
         l = head
         while l1 and l2:
             if l1.val >= l2.val:
-                l.next = l1
+                l.next = l2
                 l2 = l2.next
             else:
-                l.next = l2
+                l.next = l1
                 l1 = l1.next
+            l = l.next
         l.next = l1 if l1 else l2
-        return head
-
-class Solution(object):
+        return head.next
     #递归的方法
-    def mergeTwoLists(self, l1, l2):
+    def mergeTwoLists1(self, l1, l2):
         if not l1:
             return l2
         if not l2:
@@ -90,3 +67,9 @@ class Solution(object):
             return l1
         l2.next = self.mergeTwoLists(l1,l2.next)
         return l2
+
+if __name__ == "__main__":
+    s = Solution()
+    l1 = [1,2,4]
+    l2 = [1,3,4]
+    print(print_linked_list(s.mergeTwoLists(create_linked_list(l1),create_linked_list(l2))))
