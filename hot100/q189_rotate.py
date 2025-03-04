@@ -34,6 +34,7 @@
 '''
 解题思路：不考虑空间复杂度，直接通过长度取余，然后使用切片
 '''
+from typing import List
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         """
@@ -47,4 +48,4 @@ if __name__ == '__main__':
     s = Solution()
     nums = [1,2,3,4,5,6,7]
     k = 3
-    s.rotate(nums, k)
+    print(s.rotate(nums, k))
