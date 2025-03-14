@@ -55,7 +55,7 @@ class Solution(object):
                     if i in columns or row -i in sames1 or row+i in sames2:
                         continue
                     #如果没有冲突，将改位置记录修来，并更新 queens,columns,sames1,sames2
-                    #queens 用来存储当前行放在哪个位置
+                    #切记： queens 用来存储当前行放在哪个位置
                     queens[row] = i
                     columns.add(i)
                     sames1.add(row-i)
