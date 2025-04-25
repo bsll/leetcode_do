@@ -35,7 +35,7 @@ LCR 185. 统计结果概率
 1 <= num <= 11
 '''
 '''
-思路: 动态规划
+思路: 动态规划 dp2[j+k] = dp2[j+k] + dp1[j] / 6.0 ,k in [0,5]
 '''
 class Solution(object):
     def statisticsProbability(self, num):
